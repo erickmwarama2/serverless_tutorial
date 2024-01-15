@@ -1,0 +1,12 @@
+name: Deploy serverless application
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Deploy serverless application:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install -g serverless
+      - run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+      - run: aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - run: aws configure set region ${{ secrets.AWS_REGION }}
+      - run: serverless deploy
